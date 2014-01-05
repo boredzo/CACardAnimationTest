@@ -23,11 +23,18 @@
 }
 
 - (void) awakeFromNib {
-	enum { numCards = PRHCardRankKing };
+	enum {
+		suitsPerDeck = 4,
+		numDecks = 2,
+		numSuits = suitsPerDeck * numDecks,
+		numCards = PRHCardRankKing * numSuits
+	};
 	NSMutableArray *cards = [NSMutableArray arrayWithCapacity:(NSUInteger)numCards];
-	for (PRHCardRank rank = PRHCardRankAce; rank <= numCards; ++rank) {
-		PRHCardSuit suit = [PRHCardLayer suitAtIndex:arc4random_uniform(4U)];
-		[cards addObject:[PRHCardLayer cardLayerWithSuit:suit rank:rank]];
+	for (unsigned i = 0; i < numSuits; ++i) {
+		for (PRHCardRank rank = PRHCardRankAce; rank <= PRHCardRankKing; ++rank) {
+			PRHCardSuit suit = [PRHCardLayer suitAtIndex:arc4random_uniform(4U)];
+			[cards addObject:[PRHCardLayer cardLayerWithSuit:suit rank:rank]];
+		}
 	}
 
 	self.cardTableView.cards = cards;
