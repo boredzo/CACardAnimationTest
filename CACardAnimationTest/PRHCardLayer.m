@@ -39,10 +39,6 @@ const CGFloat PRHCardHeight = 88.9;
 		_suit = suit;
 		_rank = rank;
 
-		CGColorRef temp = CGColorCreateGenericRGB(1.0, 0.0, 0.0, 1.0);
-		self.backgroundColor = temp;
-		CGColorRelease(temp);
-
 		CALayer *backLayer = [[self class] blankCardLayer];
 		CATransform3D transform = CATransform3DMakeRotation(M_PI, 0.0, +1.0, 0.0);
 		backLayer.transform = transform;
