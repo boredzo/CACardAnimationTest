@@ -14,6 +14,8 @@ const CGFloat PRHCardHeight = 88.9;
 @interface PRHCardLayer ()
 @property CALayer *frontLayer;
 @property CATextLayer *frontTextLayer;
+@property CALayer *backLayer;
+@property CATextLayer *backTextLayer;
 @end
 
 @implementation PRHCardLayer
@@ -41,7 +43,26 @@ const CGFloat PRHCardHeight = 88.9;
 		self.backgroundColor = temp;
 		CGColorRelease(temp);
 
-		self.frontLayer = [[self class] blankCardLayer];
+		CALayer *backLayer = [[self class] blankCardLayer];
+		CATransform3D transform = CATransform3DMakeRotation(M_PI, 0.0, +1.0, 0.0);
+		backLayer.transform = transform;
+		backLayer.doubleSided = NO;
+		self.backLayer = backLayer;
+
+		CATextLayer *backTextLayer = [CATextLayer new];
+		NSString *backString = @"\U0001F60E";
+		backTextLayer.string = [NSString stringWithFormat:@"\n%@", backString];
+		backTextLayer.foregroundColor = CGColorGetConstantColor(kCGColorBlack);
+		backTextLayer.contentsGravity = kCAGravityCenter;
+		backTextLayer.alignmentMode = kCAAlignmentCenter;
+		self.backTextLayer = backTextLayer;
+
+		[self.backLayer addSublayer:self.backTextLayer];
+		[self addSublayer:self.backLayer];
+
+		CALayer *frontLayer = [[self class] blankCardLayer];
+		frontLayer.doubleSided = NO;
+		self.frontLayer = frontLayer;
 
 		CATextLayer *frontTextLayer = [CATextLayer new];
 		NSString *rankString = [self stringForRank:self.rank];
@@ -58,9 +79,13 @@ const CGFloat PRHCardHeight = 88.9;
 		self.bounds = bounds;
 		self.frontLayer.bounds = bounds;
 		self.frontTextLayer.bounds = bounds;
+		self.backLayer.bounds = bounds;
+		self.backTextLayer.bounds = bounds;
 		NSPoint position = { bounds.size.width / 2.0, bounds.size.height / 2.0 };
 		self.frontLayer.position = position;
 		self.frontTextLayer.position = position;
+		self.backLayer.position = position;
+		self.backTextLayer.position = position;
 	}
 
 	return self;

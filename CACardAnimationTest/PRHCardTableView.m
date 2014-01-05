@@ -10,6 +10,8 @@
 
 @interface PRHCardTableView ()
 
+@property(strong) CALayer *cardTableLayer;
+@property(strong) CATransformLayer *transformLayer;
 @end
 
 @implementation PRHCardTableView
@@ -23,7 +25,13 @@
 		cardTableLayer.backgroundColor = greenFelt;
 		CGColorRelease(greenFelt);
 
-		self.layer = cardTableLayer;
+		self.cardTableLayer = cardTableLayer;
+
+		CATransformLayer *transformLayer = [CATransformLayer new];
+		self.transformLayer = transformLayer;
+		[self.cardTableLayer addSublayer:self.transformLayer];
+
+		self.layer = self.cardTableLayer;
 		self.wantsLayer = YES;
 	}
 
@@ -31,7 +39,7 @@
 }
 
 - (void) viewDidChangeBackingProperties {
-	self.layer.contentsScale = self.window.backingScaleFactor;
+	self.cardTableLayer.contentsScale = self.window.backingScaleFactor;
 }
 
 - (void) setCards:(NSArray *)cards {
@@ -39,8 +47,8 @@
 
 	CGFloat backingScaleFactor = self.window.backingScaleFactor;
 	[self.cards setValue:@(backingScaleFactor) forKey:@"contentsScale"];
-	self.layer.sublayers = self.cards;
 
+	self.transformLayer.sublayers = self.cards;
 	[self.layer setNeedsLayout];
 }
 
@@ -51,13 +59,25 @@
 }
 
 - (IBAction) deal:(id)sender {
+	[CATransaction begin];
+	if ([NSApp currentEvent].modifierFlags & NSShiftKeyMask)
+		[CATransaction setAnimationDuration:5.0];
+
 	[self.cards setValue:@YES forKey:@"dealt"];
 	[self.layer setNeedsLayout];
+
+	[CATransaction commit];
 }
 
 - (IBAction) undeal:(id)sender {
+	[CATransaction begin];
+	if ([NSApp currentEvent].modifierFlags & NSShiftKeyMask)
+		[CATransaction setAnimationDuration:5.0];
+
 	[self.cards setValue:@NO forKey:@"dealt"];
 	[self.layer setNeedsLayout];
+
+	[CATransaction commit];
 }
 
 @end
