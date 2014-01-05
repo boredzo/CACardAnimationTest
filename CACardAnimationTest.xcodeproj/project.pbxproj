@@ -13,6 +13,12 @@
 		316D578B187911CE002252F8 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 316D5789187911CE002252F8 /* Credits.rtf */; };
 		316D578E187911CE002252F8 /* PRHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D578D187911CE002252F8 /* PRHAppDelegate.m */; };
 		316D5791187911CE002252F8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D578F187911CE002252F8 /* MainMenu.xib */; };
+		316D579A1879120D002252F8 /* PRHCardTableWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D57981879120D002252F8 /* PRHCardTableWindowController.m */; };
+		316D579C18791217002252F8 /* PRHCardTableWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316D579E18791217002252F8 /* PRHCardTableWindowController.xib */; };
+		316D57A11879124C002252F8 /* PRHCardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D57A01879124C002252F8 /* PRHCardLayer.m */; };
+		316D57A41879180C002252F8 /* PRHCardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D57A31879180C002252F8 /* PRHCardTableView.m */; };
+		316D57A718791A7E002252F8 /* PRHCardTableLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D57A618791A7E002252F8 /* PRHCardTableLayoutManager.m */; };
+		316D57A918792213002252F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 316D57A818792212002252F8 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +35,16 @@
 		316D578C187911CE002252F8 /* PRHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRHAppDelegate.h; sourceTree = "<group>"; };
 		316D578D187911CE002252F8 /* PRHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRHAppDelegate.m; sourceTree = "<group>"; };
 		316D5790187911CE002252F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		316D57971879120D002252F8 /* PRHCardTableWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRHCardTableWindowController.h; sourceTree = "<group>"; };
+		316D57981879120D002252F8 /* PRHCardTableWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRHCardTableWindowController.m; sourceTree = "<group>"; };
+		316D579D18791217002252F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/PRHCardTableWindowController.xib; sourceTree = "<group>"; };
+		316D579F1879124C002252F8 /* PRHCardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRHCardLayer.h; sourceTree = "<group>"; };
+		316D57A01879124C002252F8 /* PRHCardLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRHCardLayer.m; sourceTree = "<group>"; };
+		316D57A21879180C002252F8 /* PRHCardTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRHCardTableView.h; sourceTree = "<group>"; };
+		316D57A31879180C002252F8 /* PRHCardTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRHCardTableView.m; sourceTree = "<group>"; };
+		316D57A518791A7E002252F8 /* PRHCardTableLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRHCardTableLayoutManager.h; sourceTree = "<group>"; };
+		316D57A618791A7E002252F8 /* PRHCardTableLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRHCardTableLayoutManager.m; sourceTree = "<group>"; };
+		316D57A818792212002252F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				316D577B187911CE002252F8 /* Cocoa.framework in Frameworks */,
+				316D57A918792213002252F8 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				316D577A187911CE002252F8 /* Cocoa.framework */,
+				316D57A818792212002252F8 /* QuartzCore.framework */,
 				316D577C187911CE002252F8 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -85,6 +103,15 @@
 				316D578C187911CE002252F8 /* PRHAppDelegate.h */,
 				316D578D187911CE002252F8 /* PRHAppDelegate.m */,
 				316D578F187911CE002252F8 /* MainMenu.xib */,
+				316D57971879120D002252F8 /* PRHCardTableWindowController.h */,
+				316D57981879120D002252F8 /* PRHCardTableWindowController.m */,
+				316D579E18791217002252F8 /* PRHCardTableWindowController.xib */,
+				316D57A21879180C002252F8 /* PRHCardTableView.h */,
+				316D57A31879180C002252F8 /* PRHCardTableView.m */,
+				316D579F1879124C002252F8 /* PRHCardLayer.h */,
+				316D57A01879124C002252F8 /* PRHCardLayer.m */,
+				316D57A518791A7E002252F8 /* PRHCardTableLayoutManager.h */,
+				316D57A618791A7E002252F8 /* PRHCardTableLayoutManager.m */,
 				316D5781187911CE002252F8 /* Supporting Files */,
 			);
 			path = CACardAnimationTest;
@@ -157,6 +184,7 @@
 				316D5785187911CE002252F8 /* InfoPlist.strings in Resources */,
 				316D578B187911CE002252F8 /* Credits.rtf in Resources */,
 				316D5791187911CE002252F8 /* MainMenu.xib in Resources */,
+				316D579C18791217002252F8 /* PRHCardTableWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +197,10 @@
 			files = (
 				316D5787187911CE002252F8 /* main.m in Sources */,
 				316D578E187911CE002252F8 /* PRHAppDelegate.m in Sources */,
+				316D579A1879120D002252F8 /* PRHCardTableWindowController.m in Sources */,
+				316D57A11879124C002252F8 /* PRHCardLayer.m in Sources */,
+				316D57A41879180C002252F8 /* PRHCardTableView.m in Sources */,
+				316D57A718791A7E002252F8 /* PRHCardTableLayoutManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +229,14 @@
 				316D5790187911CE002252F8 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		316D579E18791217002252F8 /* PRHCardTableWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				316D579D18791217002252F8 /* en */,
+			);
+			name = PRHCardTableWindowController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

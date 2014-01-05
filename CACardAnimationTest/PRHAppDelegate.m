@@ -7,12 +7,21 @@
 //
 
 #import "PRHAppDelegate.h"
+#import "PRHCardTableWindowController.h"
 
 @implementation PRHAppDelegate
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	// Insert code here to initialize your application
+	PRHCardTableWindowController *_wc;
+}
+
+- (void) applicationWillFinishLaunching:(NSNotification *)notification {
+	_wc = [PRHCardTableWindowController new];
+	[_wc showWindow:nil];
+}
+
+- (void) applicationWillTerminate:(NSNotification *)notification {
+	[_wc close];
+	_wc = nil;
 }
 
 @end
