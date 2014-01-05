@@ -7,11 +7,13 @@
 //
 
 #import "PRHCardTableView.h"
+#import "PRHCardLayer.h"
 
 @interface PRHCardTableView ()
 
 @property(strong) CALayer *cardTableLayer;
 @property(strong) CATransformLayer *transformLayer;
+@property dispatch_queue_t dealerQueue;
 @end
 
 @implementation PRHCardTableView
@@ -33,6 +35,9 @@
 
 		self.layer = self.cardTableLayer;
 		self.wantsLayer = YES;
+
+		self.dealerQueue = dispatch_queue_create("org.boredzo.CACardAnimationTest.dealer", DISPATCH_QUEUE_SERIAL);
+		dispatch_set_target_queue(self.dealerQueue, dispatch_get_main_queue());
 	}
 
 	return self;
@@ -59,25 +64,36 @@
 }
 
 - (IBAction) deal:(id)sender {
-	[CATransaction begin];
-	if ([NSApp currentEvent].modifierFlags & NSShiftKeyMask)
-		[CATransaction setAnimationDuration:5.0];
-
-	[self.cards setValue:@YES forKey:@"dealt"];
-	[self.layer setNeedsLayout];
-
-	[CATransaction commit];
+	[self setDealtOfOneCardAtATimeTo:true reverseOrder:false];
 }
 
 - (IBAction) undeal:(id)sender {
-	[CATransaction begin];
-	if ([NSApp currentEvent].modifierFlags & NSShiftKeyMask)
-		[CATransaction setAnimationDuration:5.0];
+	[self setDealtOfOneCardAtATimeTo:false reverseOrder:true];
+}
 
-	[self.cards setValue:@NO forKey:@"dealt"];
-	[self.layer setNeedsLayout];
+- (void) setDealtOfOneCardAtATimeTo:(bool)dealt reverseOrder:(bool)reverse {
+	//Note: totalDealTime is not subject to the shift key, because it's the time period over which we're going to *start* all of the card movements.
+	//The cards' individual flights are what are subject to the shift key.
+	NSTimeInterval totalDealTime = 0.5;
+	NSTimeInterval timePerCard = totalDealTime / self.cards.count;
 
-	[CATransaction commit];
+	bool shiftKeyDown = [NSApp currentEvent].modifierFlags & NSShiftKeyMask;
+
+	__weak typeof(self) weakSelf = self;
+	NSTimeInterval time = 0.0;
+	for (PRHCardLayer *card in (reverse ? [self.cards reverseObjectEnumerator] : self.cards)) {
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), self.dealerQueue, ^{
+			[CATransaction begin];
+			if (shiftKeyDown)
+				[CATransaction setAnimationDuration:5.0];
+
+			card.dealt = dealt;
+			[weakSelf.layer setNeedsLayout];
+
+			[CATransaction commit];
+		});
+		time += timePerCard;
+	}
 }
 
 @end
