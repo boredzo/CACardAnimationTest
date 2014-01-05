@@ -31,6 +31,7 @@
 	dealtPilePosition.y -= cardSize.height + 10.0;
 
 	NSArray *allCards = view.cards;
+	NSUInteger numUndealtCards = 0;
 
 	for (PRHCardLayer *card in allCards) {
 		CALayer *backLayer = card.sublayers[0];
@@ -42,11 +43,13 @@
 		if (card.dealt) {
 			card.position = dealtPilePosition;
 			card.transform = facingForwardTransform;
+			card.zPosition = 0.0;
 			frontLayer.transform = facingForwardTransform;
 			backLayer.transform = facingAwayTransform;
 		} else {
 			card.position = undealtPilePosition;
 			card.transform = facingAwayTransform;
+			card.zPosition = 0.01 * -++numUndealtCards;
 			frontLayer.transform = facingAwayTransform;
 			backLayer.transform = facingForwardTransform;
 		}
