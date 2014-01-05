@@ -41,7 +41,6 @@
 
 		if (card.dealt) {
 			card.position = dealtPilePosition;
-			dealtPilePosition.x += cardSize.width * 0.4;
 			card.transform = facingForwardTransform;
 			frontLayer.transform = facingForwardTransform;
 			backLayer.transform = facingAwayTransform;
@@ -51,6 +50,7 @@
 			frontLayer.transform = facingAwayTransform;
 			backLayer.transform = facingForwardTransform;
 		}
+		dealtPilePosition.x += cardSize.width * 0.4;
 //		NSLog(@"Set bounds of card %@ to %@", card, NSStringFromRect(card.bounds));
 	}
 }
