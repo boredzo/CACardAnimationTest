@@ -74,7 +74,7 @@
 - (void) setDealtOfOneCardAtATimeTo:(bool)dealt reverseOrder:(bool)reverse {
 	//Note: totalDealTime is not subject to the shift key, because it's the time period over which we're going to *start* all of the card movements.
 	//The cards' individual flights are what are subject to the shift key.
-	NSTimeInterval totalDealTime = 0.5;
+	NSTimeInterval totalDealTime = 0.5; //2.0 arguably looks cooler, but takes two whole seconds (plus flight times).
 	NSTimeInterval timePerCard = totalDealTime / self.cards.count;
 
 	bool shiftKeyDown = [NSApp currentEvent].modifierFlags & NSShiftKeyMask;
