@@ -73,18 +73,34 @@ const CGFloat PRHCardHeight = 88.9;
 
 		NSRect bounds = { NSZeroPoint, { PRHCardWidth, PRHCardHeight } };
 		self.bounds = bounds;
-		self.frontLayer.bounds = bounds;
-		self.frontTextLayer.bounds = bounds;
-		self.backLayer.bounds = bounds;
-		self.backTextLayer.bounds = bounds;
-		NSPoint position = { bounds.size.width / 2.0, bounds.size.height / 2.0 };
-		self.frontLayer.position = position;
-		self.frontTextLayer.position = position;
-		self.backLayer.position = position;
-		self.backTextLayer.position = position;
+		[self setNeedsLayout];
 	}
 
 	return self;
+}
+
+- (void) layoutSublayers {
+	NSRect bounds = self.bounds;
+	self.frontLayer.bounds = bounds;
+	self.frontTextLayer.bounds = bounds;
+	self.backLayer.bounds = bounds;
+	self.backTextLayer.bounds = bounds;
+
+	NSPoint position = { bounds.size.width / 2.0, bounds.size.height / 2.0 };
+	self.frontLayer.position = position;
+	self.frontTextLayer.position = position;
+	self.backLayer.position = position;
+	self.backTextLayer.position = position;
+
+	CATransform3D facingForwardTransform = CATransform3DIdentity;
+	CATransform3D facingAwayTransform = CATransform3DMakeRotation(M_PI, 0.0, +1.0, 0.0);
+	if (self.dealt) {
+		self.frontLayer.transform = facingForwardTransform;
+		self.backLayer.transform = facingAwayTransform;
+	} else {
+		self.frontLayer.transform = facingAwayTransform;
+		self.backLayer.transform = facingForwardTransform;
+	}
 }
 
 - (void) setBounds:(CGRect)bounds {

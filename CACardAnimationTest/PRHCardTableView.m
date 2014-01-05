@@ -55,6 +55,7 @@
 
 	self.transformLayer.sublayers = self.cards;
 	[self.layer setNeedsLayout];
+	[self.cards makeObjectsPerformSelector:@selector(setNeedsLayout)];
 }
 
 - (void) setLayoutManager:(id)layoutManager {
@@ -89,6 +90,7 @@
 
 			card.dealt = dealt;
 			[weakSelf.layer setNeedsLayout];
+			[card setNeedsLayout];
 
 			[CATransaction commit];
 		});

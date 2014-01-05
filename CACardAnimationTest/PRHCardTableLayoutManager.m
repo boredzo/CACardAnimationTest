@@ -34,9 +34,6 @@
 	NSUInteger numUndealtCards = 0;
 
 	for (PRHCardLayer *card in allCards) {
-		CALayer *backLayer = card.sublayers[0];
-		CALayer *frontLayer = card.sublayers[1];
-
 		CATransform3D facingForwardTransform = CATransform3DIdentity;
 		CATransform3D facingAwayTransform = CATransform3DMakeRotation(M_PI, 0.0, +1.0, 0.0);
 
@@ -44,14 +41,10 @@
 			card.position = dealtPilePosition;
 			card.transform = facingForwardTransform;
 			card.zPosition = 0.0;
-			frontLayer.transform = facingForwardTransform;
-			backLayer.transform = facingAwayTransform;
 		} else {
 			card.position = undealtPilePosition;
 			card.transform = facingAwayTransform;
 			card.zPosition = 0.01 * -++numUndealtCards;
-			frontLayer.transform = facingAwayTransform;
-			backLayer.transform = facingForwardTransform;
 		}
 		dealtPilePosition.x += cardSize.width * 0.4;
 //		NSLog(@"Set bounds of card %@ to %@", card, NSStringFromRect(card.bounds));
