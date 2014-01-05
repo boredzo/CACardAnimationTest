@@ -73,6 +73,16 @@ const CGFloat PRHCardHeight = 88.9;
 	self.frontTextLayer.bounds = bounds;
 }
 
+- (void) setContentsScale:(CGFloat)contentsScale {
+	[super setContentsScale:contentsScale];
+
+	for (CALayer *cardFaceLayer in self.sublayers) {
+		for (CATextLayer *textLayer in cardFaceLayer.sublayers) {
+			textLayer.contentsScale = contentsScale;
+		}
+	}
+}
+
 + (PRHCardSuit) suitAtIndex:(NSUInteger)idx {
 	static PRHCardSuit suits[] = {
 		PRHCardSuitSpade,

@@ -37,7 +37,10 @@
 - (void) setCards:(NSArray *)cards {
 	_cards = [cards copy];
 
+	CGFloat backingScaleFactor = self.window.backingScaleFactor;
+	[self.cards setValue:@(backingScaleFactor) forKey:@"contentsScale"];
 	self.layer.sublayers = self.cards;
+
 	[self.layer setNeedsLayout];
 }
 
