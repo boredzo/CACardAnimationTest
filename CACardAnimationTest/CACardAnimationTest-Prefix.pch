@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'CACardAnimationTest' target in the 'CACardAnimationTest' project
+//
+
+#ifdef __OBJC__
+	#import <Cocoa/Cocoa.h>
+#endif
