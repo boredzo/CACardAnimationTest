@@ -34,7 +34,7 @@
 	NSUInteger numUndealtCards = 0;
 
 	CATransform3D facingForwardTransform = CATransform3DIdentity;
-	CATransform3D facingAwayTransform = PRH_CATransform3DRotatedAwayOnZAxis;
+	CATransform3D facingAwayTransform = PRH_CATransform3DRotatedAwayOnYAxis;
 
 	for (PRHCardLayer *card in allCards) {
 		if (card.dealt) {

@@ -93,7 +93,7 @@ const CGFloat PRHCardHeight = 88.9;
 	self.backTextLayer.position = position;
 
 	CATransform3D facingForwardTransform = CATransform3DIdentity;
-	CATransform3D facingAwayTransform = PRH_CATransform3DRotatedAwayOnZAxis;
+	CATransform3D facingAwayTransform = PRH_CATransform3DRotatedAwayOnYAxis;
 	if (self.dealt) {
 		self.frontLayer.transform = facingForwardTransform;
 		self.backLayer.transform = facingAwayTransform;
