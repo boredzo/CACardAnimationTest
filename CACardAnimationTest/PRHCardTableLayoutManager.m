@@ -33,17 +33,12 @@
 	NSArray *allCards = view.cards;
 	NSUInteger numUndealtCards = 0;
 
-	CATransform3D facingForwardTransform = CATransform3DIdentity;
-	CATransform3D facingAwayTransform = PRH_CATransform3DRotatedAwayOnYAxis;
-
 	for (PRHCardLayer *card in allCards) {
 		if (card.dealt) {
 			card.position = dealtPilePosition;
-			card.transform = facingForwardTransform;
 			card.zPosition = 0.0;
 		} else {
 			card.position = undealtPilePosition;
-			card.transform = facingAwayTransform;
 			card.zPosition = 0.01 * -++numUndealtCards;
 		}
 		dealtPilePosition.x += cardSize.width * 0.4;
